@@ -1,8 +1,10 @@
 const ligarButton = document.getElementById('ligarButton');
 const desligarButton = document.getElementById('desligarButton');
 const restartButton = document.getElementById('restartButton');
+const producaoDisplay = document.getElementById('producaoDisplay');
 
-var urlPost = 'https://leanweb.onrender.com/'
+var urlPost = 'https://leanweb.onrender.com/chaves'
+var urlGet = 'https://leanweb.onrender.com/sensor'
 
 ligarButton.addEventListener('click', () => {
     let requestData = {"liga": 1, "desliga": 0, "restart": 0}
@@ -28,3 +30,17 @@ function sendRequest(data){
         body: JSON.stringify(data )
     })
 }
+
+function receiverRequest(){
+    fetch(urlGet, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(data => {
+        producaoDisplay.textContent = data.sensor
+    })
+}
+
+setInterval(receiverRequest, 2000)

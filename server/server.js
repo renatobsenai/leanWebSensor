@@ -12,17 +12,40 @@ chaves = {  'liga': 0,
             'auto': 0,
             'restart': 0}
 
-app.post('/', jsonParser, function (req, res) {       
+producao = {'sensor' : 0}
+
+//***********************controle das chave**********************
+// aguarda postagem da página web feita através dos botões criados em html
+app.post('/chaves', jsonParser, function (req, res) {       
     res.writeHead(200, { 'Content-Type': 'application/json', mode: "cors"});
     chaves = req.body;
     console.log(chaves);
     res.end();
 })
 
-app.get('/', function (req, res){
+// aguardando o get da planta lean local
+app.get('/chaves', function (req, res){
     res.writeHead(200, { 'Content-Type': 'application/json', mode: "cors"});
     res.write(JSON.stringify(chaves));  
     res.end(); 
 })
+//*************************************************************** 
+
+//***********************controle do sensor**********************
+// aguarda postagem da da planta lean com os dados da produção
+app.post('/sensor', jsonParser, function (req, res) {       
+    res.writeHead(200, { 'Content-Type': 'application/json', mode: "cors"});
+    producao = req.body;
+    console.log(producao);
+    res.end();
+})
+
+// aguardando o get da planta lean local
+app.get('/sensor', function (req, res){
+    res.writeHead(200, { 'Content-Type': 'application/json', mode: "cors"});
+    res.write(JSON.stringify(producao));  
+    res.end(); 
+})
+//*************************************************************** 
 
 app.listen(3000)
