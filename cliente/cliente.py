@@ -20,7 +20,7 @@ GPIO.setup(10, GPIO.OUT) #man
 # url usada para buscar os dados dos botões
 urlGet = 'https://leanwebsensorserver.onrender.com/chaves'
 # url usada para enviar os dados do sensor
-urlPost = 'https://leanwebsensorserver.onrender.com/sensor'
+urlPost = 'https://leanwebsensorserver.onrender.com/producao'
 
 # criando variavel para os pinos do rasp
 liga = 27

@@ -33,7 +33,7 @@ app.get('/chaves', function (req, res){
 
 //***********************controle do sensor**********************
 // aguarda postagem da da planta lean com os dados da produção
-app.post('/sensor', jsonParser, function (req, res) {       
+app.post('/producao', jsonParser, function (req, res) {       
     res.writeHead(200, { 'Content-Type': 'application/json', mode: "cors"});
     producao = req.body;
     console.log(producao);
@@ -41,7 +41,7 @@ app.post('/sensor', jsonParser, function (req, res) {
 })
 
 // aguardando o get da planta lean local
-app.get('/sensor', function (req, res){
+app.get('/producao', function (req, res){
     res.writeHead(200, { 'Content-Type': 'application/json', mode: "cors"});
     res.write(JSON.stringify(producao));  
     res.end(); 

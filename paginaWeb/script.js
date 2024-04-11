@@ -4,7 +4,7 @@ const restartButton = document.getElementById('restartButton');
 const producaoDisplay = document.getElementById('producaoDisplay');
 
 var urlPost = 'https://leanwebsensorserver.onrender.com/chaves'
-var urlGet = 'https://leanwebsensorserver.onrender.com/sensor'
+var urlGet = 'https://leanwebsensorserver.onrender.com/producao'
 
 ligarButton.addEventListener('click', () => {
     let requestData = {"liga": 1, "desliga": 0, "restart": 0}
