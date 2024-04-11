@@ -12,7 +12,7 @@ chaves = {  'liga': 0,
             'auto': 0,
             'restart': 0}
 
-producao = {'sensor' : 0}
+producao = {sensor : 0}
 
 //***********************controle das chave**********************
 // aguarda postagem da página web feita através dos botões criados em html

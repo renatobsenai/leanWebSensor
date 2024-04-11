@@ -38,7 +38,7 @@ contador = 0
 chaves = {"liga": 0, "desliga": 0, "restart": 0}
 
 # criar a variável a ser postada
-postagem = {"sensor": contador}
+postagem = {'sensor': contador}
 
 while True:
     # lógica de monitoramento e tratamento dos valores do sensor
@@ -48,7 +48,7 @@ while True:
         sensor_old = sensor
         contador = contador + 1
         print(contador)
-        postagem = {"sensor": contador}
+        postagem = {'sensor': contador}
         time.sleep(0.1)
 
     # detector de borda de subida, apenas para atualizar as variáveis

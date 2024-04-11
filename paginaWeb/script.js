@@ -27,7 +27,7 @@ function sendRequest(data){
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(data )
+        body: JSON.stringify(data)
     })
 }
 
@@ -39,7 +39,8 @@ function receiverRequest(){
         }
     })
     .then(data => {
-        producaoDisplay.textContent = data["sensor"]
+        console.log(data)
+        producaoDisplay.textContent = data.sensor;
     })
 }
 
