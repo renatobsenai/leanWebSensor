@@ -39,8 +39,8 @@ function receiverRequest(){
         }
     })
     .then(data => {
-        console.log(data)
-        producaoDisplay.textContent = data.sensor;
+        console.log(data["sensor"])
+        producaoDisplay.textContent = data["sensor"];
     })
 }
 
