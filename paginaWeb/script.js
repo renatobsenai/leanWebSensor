@@ -39,7 +39,7 @@ function receiverRequest(){
         }
     })
     .then(data => {
-        producaoDisplay.textContent = data.sensor
+        producaoDisplay.textContent = data["sensor"]
     })
 }
 
