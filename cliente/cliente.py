@@ -18,9 +18,9 @@ GPIO.setup(22, GPIO.OUT) #auto
 GPIO.setup(10, GPIO.OUT) #man
 
 # url usada para buscar os dados dos botões
-urlGet = 'https://leanweb.onrender.com/chaves'
+urlGet = 'https://leanwebsensorserver.onrender.com/chaves'
 # url usada para enviar os dados do sensor
-urlPost = 'https://leanweb.onrender.com/sensor'
+urlPost = 'https://leanwebsensorserver.onrender.com/sensor'
 
 # criando variavel para os pinos do rasp
 liga = 27
@@ -62,6 +62,7 @@ while True:
     # armazena na variável chaves, o request do tipo GET e transforma
     # o retorno em um json
     chaves = requests.get(urlGet)
+    print(chaves)
     respostaJson = chaves.json()
     # lógica de acionamento do liga, desliga e restart
     if(liga_ != respostaJson['liga'] or desliga_ != respostaJson['desliga'] or restart_ != respostaJson['restart']):
