@@ -9,7 +9,7 @@ app.use(cors());
 var jsonParser = bodyParser.json()
 
 chaves = {  'liga': 0,
-            'auto': 0,
+            'desliga': 0,
             'restart': 0}
 
 producao = {sensor : 0}
