@@ -47,17 +47,16 @@ while True:
     if (sensor_old == 1) and (sensor == 0):
         sensor_old = sensor
         contador = contador + 1
-        print(contador)
         postagem = {'sensor': contador}
-        time.sleep(0.1)
 
     # detector de borda de subida, apenas para atualizar as variáveis
     if(sensor_old == 0) and (sensor == 1):
         sensor_old = sensor
-        print(contador)
 
     # post dos dados do sensor para o servidor
-    requests.post(urlPost, json = postagem)
+    x = requests.post(urlPost, json = postagem)
+    print(f"contador: {contador}")
+    print (x.status_code)
 
     # armazena na variável chaves, o request do tipo GET e transforma
     # o retorno em um json

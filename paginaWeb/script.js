@@ -6,6 +6,22 @@ const producaoDisplay = document.getElementById('producaoDisplay');
 var urlPost = 'https://leanwebsensorserver.onrender.com/chaves'
 var urlGet = 'https://leanwebsensorserver.onrender.com/producao'
 
+function receiverRequest(){
+    fetch(urlGet, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(json => {
+        producaoDisplay.textContent = json.sensor;
+        console.log(json.sensor);
+    })
+}
+
+setInterval(receiverRequest, 2000)  
+
 ligarButton.addEventListener('click', () => {
     let requestData = {"liga": 1, "desliga": 0, "restart": 0}
     sendRequest(requestData)
@@ -30,18 +46,3 @@ function sendRequest(data){
         body: JSON.stringify(data)
     })
 }
-
-function receiverRequest(){
-    fetch(urlGet, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    .then(data => {
-        console.log(data["sensor"])
-        producaoDisplay.textContent = data["sensor"];
-    })
-}
-
-setInterval(receiverRequest, 2000)
