@@ -33,12 +33,14 @@ desliga_ = 0
 restart_ = 0
 sensor_old = 0
 contador = 0
+msg = 'Aguardando Comandos!'
+
 
 # criar a variavel chaves
 chaves = {"liga": 0, "desliga": 0, "restart": 0}
 
 # criar a variável a ser postada
-postagem = {'sensor': contador}
+postagem = {'sensor': contador, 'msg': msg}
 
 while True:
     # lógica de monitoramento e tratamento dos valores do sensor
@@ -47,7 +49,7 @@ while True:
     if (sensor_old == 1) and (sensor == 0):
         sensor_old = sensor
         contador = contador + 1
-        postagem = {'sensor': contador}
+        postagem = {'sensor': contador, 'msg': msg}
 
     # detector de borda de subida, apenas para atualizar as variáveis
     if(sensor_old == 0) and (sensor == 1):
@@ -70,6 +72,9 @@ while True:
         restart_ = respostaJson['restart']
         if(chaves.status_code):
             if(liga_ == True):
+                msg = 'Ligado'
+                postagem = {'sensor': contador, 'msg': msg}
+                x = requests.post(urlPost, json = postagem)
                 GPIO.output(man, 0)
                 time.sleep(0.5)
                 GPIO.output(auto, 1)
@@ -77,17 +82,26 @@ while True:
                 time.sleep(5)
                 GPIO.output(liga, 0)
             if(desliga_ == True):
+                msg = 'Desligado'
+                postagem = {'sensor': contador, 'msg': msg}
+                x = requests.post(urlPost, json = postagem)
                 GPIO.output(liga, 0)
                 GPIO.output(auto, 0)
                 time.sleep(0.5)
                 GPIO.output(man, 1)
             if(restart_  == True):
+                msg = 'Reiniciando...'
+                postagem = {'sensor': contador, 'msg': msg}
+                x = requests.post(urlPost, json = postagem)
                 GPIO.output(auto, 0)
                 GPIO.output(man, 1)
                 time.sleep(0.5)
                 GPIO.output(liga, 1)
                 time.sleep(10)
                 GPIO.output(liga, 0)
+                msg = 'Reiniciado!'
+                postagem = {'sensor': contador, 'msg': msg}
+                x = requests.post(urlPost, json = postagem)
         else:
             continue
 
