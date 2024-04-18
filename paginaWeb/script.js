@@ -2,9 +2,13 @@ const ligarButton = document.getElementById('ligarButton');
 const desligarButton = document.getElementById('desligarButton');
 const restartButton = document.getElementById('restartButton');
 const producaoDisplay = document.getElementById('producaoDisplay');
+const erro = document.getElementById('erro');
 
 var urlPost = 'https://leanwebsensorserver.onrender.com/chaves'
 var urlGet = 'https://leanwebsensorserver.onrender.com/producao'
+
+sensor_old = 0;
+contaErro = 0;
 
 function receiverRequest(){
     fetch(urlGet, {
@@ -18,6 +22,20 @@ function receiverRequest(){
         producaoDisplay.textContent = json.sensor;
         console.log(json.sensor);
     })
+    if (json.msg == "Ligado"){
+        if (json.sensor == sensor_old)
+            contaErro = contaErro + 1;
+        else{
+            contaErro = 0;
+            sensor_old = json.sensor;
+        }
+        if (contaErro >= 5)
+            erro.textContent = "ERRO DE ACIONAMENTO";
+        else
+            erro.textContent = "";
+    }
+    else
+        erro.textContent = "";
 }
 
 setInterval(receiverRequest, 2000)  
