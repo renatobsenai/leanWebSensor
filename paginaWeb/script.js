@@ -21,21 +21,21 @@ function receiverRequest(){
     .then(json => {
         producaoDisplay.textContent = json.sensor;
         console.log(json.sensor);
-    })
-    if (json.msg == "Ligado"){
-        if (json.sensor == sensor_old)
-            contaErro = contaErro + 1;
-        else{
-            contaErro = 0;
-            sensor_old = json.sensor;
+        if (json.msg == "Ligado"){
+            if (json.sensor == sensor_old)
+                contaErro = contaErro + 1;
+            else{
+                contaErro = 0;
+                sensor_old = json.sensor;
+            }
+            if (contaErro >= 5)
+                erro.textContent = "ERRO DE ACIONAMENTO";
+            else
+                erro.textContent = "";
         }
-        if (contaErro >= 5)
-            erro.textContent = "ERRO DE ACIONAMENTO";
         else
             erro.textContent = "";
-    }
-    else
-        erro.textContent = "";
+    })
 }
 
 setInterval(receiverRequest, 2000)  
