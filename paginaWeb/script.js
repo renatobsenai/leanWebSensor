@@ -28,7 +28,7 @@ function receiverRequest(){
                 contaErro = 0;
                 sensor_old = json.sensor;
             }
-            if (contaErro >= 5)
+            if (contaErro >= 10)
                 erro.textContent = "ERRO DE ACIONAMENTO";
             else
                 erro.textContent = "";
